@@ -1,5 +1,34 @@
 [
   {
+    "id": "demo-1794781540557",
+    "title": "Database Lembaga Lengkap",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard & ERP",
+    "oneLiner": "Otomatisasi semua keperluan madrasah dalam 1 Aplikasi",
+    "desc": "Manajemen Data Santri, Data Guru, Data Keuangan, Data Absensi Guru dan Murid, dan Data Gaji Guru Otomatis Dalam satu aplikasi",
+    "features": [
+      "Login Multi User Sesuai Jabatan",
+      "Data Terkoneksi Dengan Rapi",
+      "Otomatisasi Gaji Guru Sesuai Ketentuan",
+      "Dan Banyak fitur Bermanfaat"
+    ],
+    "demoUrl": "https://script.google.com/macros/s/AKfycbw7a074rEIMUQN8SczCGH46ELpFwZSPY7HqTANPkLF8IiDW-u8h9UfVLArREPvWbHto2A/exec",
+    "githubUrl": "",
+    "thumbnail": "uploads/thumb-1794781537457-896022.png",
+    "techStack": [
+      "HTML",
+      "Vue.js",
+      "Tailwindcss",
+      "Spreadsheet"
+    ],
+    "credentials": {
+      "user": "admin, kepala, tu, bendahara, guru1, guru2",
+      "pass": "demo123"
+    },
+    "status": "Live & Stabil",
+    "createdAt": "2026-11-15T22:25:40.558Z"
+  },
+  {
     "id": "pos-scanner-demo",
     "title": "Database Lembaga & E-Rapor V1",
     "category": "dashboard",
