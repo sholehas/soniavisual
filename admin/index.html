@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.469.0"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:["Inter","sans-serif"]}}}}</script>
+<title>Panel Pengelola Demo - HubDemo Admin</title>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased font-sans">
+<div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl shadow-2xl"><span id="toast-message" class="text-sm font-medium"></span></div>
+<header class="sticky top-0 z-40 backdrop-blur-md bg-slate-950/85 border-b border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div><span class="font-bold text-base text-white block leading-none">HubDemo Admin</span><span id="repo-label" class="text-[11px] text-emerald-400 font-medium"></span></div>
+    <div class="flex items-center gap-3">
+      <a href="../" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800">Lihat Web Publik ↗</a>
+      <button id="btn-logout" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20">Keluar</button>
+    </div>
+  </div>
+</header>
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+    <div><h1 class="text-2xl font-bold text-white">Manajemen Katalog Produk Demo</h1><p class="text-xs sm:text-sm text-slate-400 mt-1">Setiap simpan menjadi commit ke repo; situs terbarui otomatis setelah deploy.</p></div>
+    <button id="btn-add" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm"><i data-lucide="plus-circle" class="w-4 h-4"></i>Tambah Demo Baru</button>
+  </div>
+  <div class="mt-6 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl"><div class="overflow-x-auto">
+    <table class="w-full text-left text-sm text-slate-300">
+      <thead class="bg-slate-950/70 text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-800"><tr><th class="py-3.5 px-4">Thumbnail</th><th class="py-3.5 px-4">Aplikasi</th><th class="py-3.5 px-4">Status & Akun</th><th class="py-3.5 px-4">Link</th><th class="py-3.5 px-4 text-right">Aksi</th></tr></thead>
+      <tbody id="admin-table-body" class="divide-y divide-slate-800"></tbody>
+    </table>
+  </div></div>
+</main>
+<dialog id="form-modal" class="bg-transparent backdrop:bg-slate-950/80 p-4 max-w-3xl w-full rounded-2xl m-auto focus:outline-none">
+  <div class="bg-slate-900 border border-slate-800 rounded-2xl text-slate-200 max-h-[92vh] flex flex-col">
+    <div class="flex items-center justify-between p-5 border-b border-slate-800"><h3 id="form-modal-title" class="font-bold text-lg text-white"></h3><button id="btn-close-form" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400">✕</button></div>
+    <form id="product-form" class="p-5 space-y-4 overflow-y-auto" onsubmit="return false">
+      <input type="hidden" id="form-id" name="id">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><label class="block text-xs font-medium text-slate-300 mb-1">Nama Aplikasi *</label><input id="form-title" name="title" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+        <div><label class="block text-xs font-medium text-slate-300 mb-1">Kategori *</label>
+          <select id="form-category" name="category" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500">
+            <option value="dashboard">Dashboard & ERP</option><option value="pwa">PWA & Mobile</option><option value="scanner">QR & Scanner</option>
+            <option value="api">Integrasi API & Webhook</option><option value="ecommerce">E-Commerce & Kasir</option><option value="custom">+ Tulis Kategori Baru (Manual)</option>
+          </select>
+          <div id="custom-category-box" class="hidden mt-2"><input id="form-customCategory" name="customCategory" placeholder="Nama kategori baru..." class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+        </div>
+      </div>
+      <div><label class="block text-xs font-medium text-slate-300 mb-1">Pitch Ringkas (1 kalimat) *</label><input id="form-oneliner" name="oneLiner" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+      <div><label class="block text-xs font-medium text-slate-300 mb-1">Deskripsi Lengkap *</label><textarea id="form-desc" name="desc" rows="3" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></textarea></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><label class="block text-xs font-medium text-slate-300 mb-1">Link Live Demo *</label><input type="url" id="form-demoUrl" name="demoUrl" required placeholder="https://..." class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+        <div><label class="block text-xs font-medium text-slate-300 mb-1">Link GitHub (opsional)</label><input type="url" id="form-githubUrl" name="githubUrl" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+      </div>
+      <div class="p-4 bg-slate-950 border border-slate-800 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><label class="text-[11px] text-slate-400 block mb-1">Unggah gambar (JPG/PNG/WEBP/GIF, maks 5MB)</label><input type="file" id="form-thumbnailFile" accept="image/*" class="w-full text-xs text-slate-400"></div>
+        <div><label class="text-[11px] text-slate-400 block mb-1">Atau URL gambar eksternal</label><input type="url" id="form-thumbnailUrl" name="thumbnailUrl" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div><label class="block text-xs font-medium text-slate-300 mb-1">Fitur Utama (satu per baris)</label><textarea id="form-features" name="features" rows="3" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></textarea></div>
+        <div><label class="block text-xs font-medium text-slate-300 mb-1">Tech Stack (pisahkan koma)</label><input id="form-techStack" name="techStack" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500">
+          <label class="block text-xs font-medium text-slate-300 mb-1 mt-3">Status Kesiapan</label><input id="form-status" name="status" value="Live & Stabil" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+      </div>
+      <div class="p-4 bg-slate-950 border border-slate-800 rounded-xl grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div><label class="text-[11px] text-slate-400 block mb-1">Username / Email Demo</label><input id="form-demoUser" name="demoUser" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+        <div><label class="text-[11px] text-slate-400 block mb-1">Password Demo</label><input id="form-demoPass" name="demoPass" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+      </div>
+    </form>
+    <div class="p-5 border-t border-slate-800 flex justify-end gap-3">
+      <button id="btn-cancel" type="button" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300">Batal</button>
+      <button id="btn-save" type="button" class="px-5 py-2 rounded-xl text-xs font-semibold bg-emerald-500 hover:bg-emerald-400 disabled:opacity-60 text-slate-950">Simpan Produk</button>
+    </div>
+  </div>
+</dialog>
+<script type="module" src="../js/admin.js"></script>
+</body></html>

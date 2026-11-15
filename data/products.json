@@ -1,0 +1,34 @@
+[
+  {
+    "id": "pos-scanner-demo",
+    "title": "QuickScan Kasir & Inventaris",
+    "category": "scanner",
+    "categoryLabel": "QR & Scanner",
+    "oneLiner": "PWA Kasir minimarket dengan pemindai barcode kamera real-time.",
+    "desc": "Solusi Point of Sale web ringan yang mengubah kamera HP atau laptop menjadi barcode scanner secepat perangkat kasir profesional.",
+    "features": ["Deteksi Barcode EAN-13 & Code-128 via kamera", "Penyimpanan offline lokal (IndexedDB)", "Ekspor struk belanja ke PDF instan", "Multi-platform (Desktop, Android & iOS)"],
+    "demoUrl": "https://example.com/demo/quickscan",
+    "githubUrl": "https://github.com/example/quickscan",
+    "thumbnail": "https://placehold.co/600x340/0f172a/38bdf8?text=QuickScan+POS+Demo",
+    "techStack": ["Vanilla JS", "HTML5 Camera API", "Tailwind CSS", "IndexedDB"],
+    "credentials": { "user": "kasir@demo.id", "pass": "kasir123" },
+    "status": "Live & Stabil",
+    "createdAt": "2026-11-15T00:00:00.000Z"
+  },
+  {
+    "id": "fleet-tracker-erp",
+    "title": "Logistik & Fleet Tracker ERP",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard & ERP",
+    "oneLiner": "Panel kontrol monitoring armada kurir pengiriman barang secara real-time.",
+    "desc": "Dashboard analitik armada ekspedisi dengan visualisasi rute pengiriman, penghitungan konsumsi bahan bakar, dan status kurir aktif.",
+    "features": ["Visualisasi peta rute GPS simulasi", "Statistik armada & laporan harian", "Role-based access (Manager & Admin)", "Filtering data tabel berkecepatan tinggi"],
+    "demoUrl": "https://example.com/demo/fleet-erp",
+    "githubUrl": "https://github.com/example/fleet-erp",
+    "thumbnail": "https://placehold.co/600x340/0f172a/34d399?text=Fleet+Tracker+ERP",
+    "techStack": ["React", "Leaflet Maps", "Chart.js", "Tailwind CSS"],
+    "credentials": { "user": "admin_logistik", "pass": "demo2026" },
+    "status": "Demo Ready",
+    "createdAt": "2026-11-15T00:00:00.000Z"
+  }
+]
