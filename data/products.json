@@ -1,19 +1,45 @@
 [
   {
     "id": "pos-scanner-demo",
-    "title": "QuickScan Kasir & Inventaris",
-    "category": "scanner",
-    "categoryLabel": "QR & Scanner",
-    "oneLiner": "PWA Kasir minimarket dengan pemindai barcode kamera real-time.",
-    "desc": "Solusi Point of Sale web ringan yang mengubah kamera HP atau laptop menjadi barcode scanner secepat perangkat kasir profesional.",
-    "features": ["Deteksi Barcode EAN-13 & Code-128 via kamera", "Penyimpanan offline lokal (IndexedDB)", "Ekspor struk belanja ke PDF instan", "Multi-platform (Desktop, Android & iOS)"],
-    "demoUrl": "https://example.com/demo/quickscan",
-    "githubUrl": "https://github.com/example/quickscan",
-    "thumbnail": "https://placehold.co/600x340/0f172a/38bdf8?text=QuickScan+POS+Demo",
-    "techStack": ["Vanilla JS", "HTML5 Camera API", "Tailwind CSS", "IndexedDB"],
-    "credentials": { "user": "kasir@demo.id", "pass": "kasir123" },
-    "status": "Live & Stabil",
-    "createdAt": "2026-11-15T00:00:00.000Z"
+    "title": "Database Lembaga & E-Rapor V1",
+    "category": "dashboard",
+    "categoryLabel": "Dashboard & ERP",
+    "oneLiner": "PWA Admin Lembaga Dengan UX Yang Ramah Pengguna untuk keperluan Digitalisasi Rapor Lembaga.",
+    "desc": "Solusi Penilaian dan Cetak Rapor Yang Instan",
+    "features": [
+      "User Multi Role",
+      "- Admin",
+      "- Wali kelas",
+      "- Guru",
+      "- Kepala Sekolah",
+      "Penilaian",
+      "- Fleksibel Sesuai Mapel Yang diajar",
+      "- Input Per Guru / Wali Kelas",
+      "- Otomatisasi Rata Rata Dan Predikat",
+      "- Pencatatan Sikap dll",
+      "Rapor",
+      "- Cetak Per Kelas",
+      "- Cetak Per Murid",
+      "Leger",
+      "- Export PDF Per Kelas",
+      "- Export Excel Per Kelas"
+    ],
+    "demoUrl": "https://script.google.com/macros/s/AKfycbwFMpbmsER3w24E1YZfFDone4wnH6s3OQOqK4H1FMjl9rpzBhPQpS42Odg-qpyI2g7u3Q/exec",
+    "githubUrl": "",
+    "thumbnail": "uploads/thumb-1794748608158-110659.png",
+    "techStack": [
+      "Vanilla JS",
+      "HTML5",
+      "Tailwind CSS",
+      "Spreadsheet"
+    ],
+    "credentials": {
+      "user": "admin",
+      "pass": "admin123"
+    },
+    "status": "Live Demo",
+    "createdAt": "2026-11-15T00:00:00.000Z",
+    "updatedAt": "2026-11-15T13:16:50.786Z"
   },
   {
     "id": "fleet-tracker-erp",
@@ -22,12 +48,25 @@
     "categoryLabel": "Dashboard & ERP",
     "oneLiner": "Panel kontrol monitoring armada kurir pengiriman barang secara real-time.",
     "desc": "Dashboard analitik armada ekspedisi dengan visualisasi rute pengiriman, penghitungan konsumsi bahan bakar, dan status kurir aktif.",
-    "features": ["Visualisasi peta rute GPS simulasi", "Statistik armada & laporan harian", "Role-based access (Manager & Admin)", "Filtering data tabel berkecepatan tinggi"],
+    "features": [
+      "Visualisasi peta rute GPS simulasi",
+      "Statistik armada & laporan harian",
+      "Role-based access (Manager & Admin)",
+      "Filtering data tabel berkecepatan tinggi"
+    ],
     "demoUrl": "https://example.com/demo/fleet-erp",
     "githubUrl": "https://github.com/example/fleet-erp",
     "thumbnail": "https://placehold.co/600x340/0f172a/34d399?text=Fleet+Tracker+ERP",
-    "techStack": ["React", "Leaflet Maps", "Chart.js", "Tailwind CSS"],
-    "credentials": { "user": "admin_logistik", "pass": "demo2026" },
+    "techStack": [
+      "React",
+      "Leaflet Maps",
+      "Chart.js",
+      "Tailwind CSS"
+    ],
+    "credentials": {
+      "user": "admin_logistik",
+      "pass": "demo2026"
+    },
     "status": "Demo Ready",
     "createdAt": "2026-11-15T00:00:00.000Z"
   }
