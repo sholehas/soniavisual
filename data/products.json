@@ -43,7 +43,7 @@
   },
   {
     "id": "fleet-tracker-erp",
-    "title": "Database Lembaga & E-Rapor V1",
+    "title": "Database Lembaga & E-Rapor V2",
     "category": "dashboard",
     "categoryLabel": "Dashboard & ERP",
     "oneLiner": "Panel kontrol monitoring Penilaian dan Penempatan Ruang Kelas Murid Pintar",
@@ -69,6 +69,6 @@
     },
     "status": "Live Demo",
     "createdAt": "2026-11-15T00:00:00.000Z",
-    "updatedAt": "2026-11-15T13:22:55.826Z"
+    "updatedAt": "2026-11-15T14:00:08.103Z"
   }
 ]
