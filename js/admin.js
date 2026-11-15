@@ -1,7 +1,7 @@
 import { CONFIG } from "./config.js";
 import { requireAuth, logout } from "./auth.js";
-import { session, getProducts, mutate, uploadImage, deleteImage } from "./store.js";
-import { $, esc, icons, toast, thumbSrc, fallbackImages } from "./ui.js";
+import { session, getProducts, mutate, uploadImage, deleteImage, getSettings, saveSettings } from "./store.js";
+import { $, esc, icons, toast, thumbSrc, fallbackImages, waLink } from "./ui.js";
 
 requireAuth();
 const PRESET = ["dashboard", "pwa", "scanner", "api", "ecommerce"];
@@ -89,6 +89,30 @@ async function remove(id) {
   } catch (e) { fail(e); }
 }
 
+// ---------- Pengaturan WA ----------
+function updateWaTest() {
+  const l = waLink($("wa-number").value, $("wa-message").value || CONFIG.waDefaultMessage), a = $("wa-test");
+  a.href = l || "#"; a.classList.toggle("hidden", !l);
+}
+async function loadWaForm() {
+  try {
+    const { data } = await getSettings();
+    $("wa-number").value = data.waNumber || ""; $("wa-message").value = data.waMessage || CONFIG.waDefaultMessage; updateWaTest();
+  } catch (e) { fail(e); }
+}
+async function saveWa() {
+  const num = $("wa-number").value.trim();
+  if (num && num.replace(/\D/g, "").length < 9) return toast("Nomor WhatsApp tidak valid");
+  const b = $("btn-save-settings"); b.disabled = true; b.textContent = "Menyimpan...";
+  try {
+    await saveSettings({ waNumber: num, waMessage: $("wa-message").value.trim() || CONFIG.waDefaultMessage });
+    toast("Pengaturan WA tersimpan! Tampil setelah deploy selesai.");
+  } catch (e) { fail(e); } finally { b.disabled = false; b.textContent = "Simpan Pengaturan"; }
+}
+$("btn-save-settings").addEventListener("click", saveWa);
+$("wa-number").addEventListener("input", updateWaTest);
+$("wa-message").addEventListener("input", updateWaTest);
+
 $("admin-table-body").addEventListener("click", (e) => {
   const ed = e.target.closest("[data-edit]"), dl = e.target.closest("[data-del]");
   if (ed) openForm(list.find((p) => p.id === ed.dataset.edit)); if (dl) remove(dl.dataset.del);
@@ -101,4 +125,4 @@ $("btn-logout").addEventListener("click", logout);
 $("form-category").addEventListener("change", (e) => toggleCustom(e.target.value));
 fallbackImages(document.body, CONFIG.placeholder);
 $("repo-label").textContent = session.get()?.repo || "";
-icons(); refresh();
+icons(); refresh(); loadWaForm();

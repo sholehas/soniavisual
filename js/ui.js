@@ -27,3 +27,11 @@ export function fallbackImages(root, placeholder) {
     if (e.target.tagName === "IMG" && !e.target.dataset.fb) { e.target.dataset.fb = 1; e.target.src = placeholder; }
   }, true);
 }
+
+// Tautan WhatsApp dari nomor lokal/internasional (08xx / 8xx / 628xx -> wa.me/628xx)
+export function waLink(number, msg = "") {
+  let n = String(number || "").replace(/\D/g, "");
+  if (n.startsWith("0")) n = "62" + n.slice(1);
+  else if (n.startsWith("8")) n = "62" + n;
+  return n ? `https://wa.me/${n}${msg ? "?text=" + encodeURIComponent(msg) : ""}` : "";
+}

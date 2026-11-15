@@ -2,3 +2,5 @@
 ::-webkit-scrollbar { width: 7px; }
 ::-webkit-scrollbar-track { background: #0f172a; }
 ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+@keyframes zoom-in { from { transform: scale(.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+#lightbox-img { animation: zoom-in .2s ease-out; }

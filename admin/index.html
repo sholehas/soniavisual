@@ -23,6 +23,18 @@
     <div><h1 class="text-2xl font-bold text-white">Manajemen Katalog Produk Demo</h1><p class="text-xs sm:text-sm text-slate-400 mt-1">Setiap simpan menjadi commit ke repo; situs terbarui otomatis setelah deploy.</p></div>
     <button id="btn-add" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm"><i data-lucide="plus-circle" class="w-4 h-4"></i>Tambah Demo Baru</button>
   </div>
+  <section class="mt-6 bg-slate-900 border border-slate-800 rounded-2xl p-5">
+    <h2 class="text-sm font-bold text-white flex items-center gap-2"><i data-lucide="message-circle" class="w-4 h-4 text-green-500"></i>Pengaturan Kontak WhatsApp</h2>
+    <p class="text-[11px] text-slate-500 mt-1">Nomor ini dipakai tombol "Chat Admin" di web publik (terbaca publik). Kosongkan untuk menyembunyikan tombol.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+      <div><label class="block text-xs font-medium text-slate-300 mb-1">Nomor WhatsApp</label><input id="wa-number" type="tel" inputmode="tel" placeholder="08123456789 atau 628123456789" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+      <div class="md:col-span-2"><label class="block text-xs font-medium text-slate-300 mb-1">Pesan awal (tombol Chat Admin)</label><input id="wa-message" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-emerald-500"></div>
+    </div>
+    <div class="mt-4 flex items-center gap-4">
+      <button id="btn-save-settings" type="button" class="px-5 py-2 rounded-xl text-xs font-semibold bg-emerald-500 hover:bg-emerald-400 disabled:opacity-60 text-slate-950">Simpan Pengaturan</button>
+      <a id="wa-test" href="#" target="_blank" rel="noopener noreferrer" class="hidden text-xs text-emerald-400 hover:underline">Tes tautan WA ↗</a>
+    </div>
+  </section>
   <div class="mt-6 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl"><div class="overflow-x-auto">
     <table class="w-full text-left text-sm text-slate-300">
       <thead class="bg-slate-950/70 text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-800"><tr><th class="py-3.5 px-4">Thumbnail</th><th class="py-3.5 px-4">Aplikasi</th><th class="py-3.5 px-4">Status & Akun</th><th class="py-3.5 px-4">Link</th><th class="py-3.5 px-4 text-right">Aksi</th></tr></thead>

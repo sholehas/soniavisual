@@ -76,3 +76,28 @@ export async function deleteImage(path) {
     await gh(`contents/${path}`, { method: "DELETE", body: JSON.stringify({ message: "Hapus thumbnail", sha: f.sha, branch: s.branch }) });
   } catch { /* abaikan jika file sudah tidak ada */ }
 }
+
+// ---------- Pengaturan situs (nomor WA, dll) ----------
+export async function loadSettings() {
+  try {
+    const r = await fetch(CONFIG.settingsPath + "?t=" + Date.now());
+    return r.ok ? await r.json() : {};
+  } catch { return {}; }
+}
+
+export async function getSettings() {
+  const s = session.get();
+  try {
+    const f = await gh(`contents/${CONFIG.settingsPath}?ref=${encodeURIComponent(s.branch)}`);
+    return { data: JSON.parse(fromB64(f.content) || "{}"), sha: f.sha };
+  } catch (e) { if (e.status === 404) return { data: {}, sha: null }; throw e; }
+}
+
+export async function saveSettings(data) {
+  const s = session.get();
+  const { sha } = await getSettings();
+  await gh(`contents/${CONFIG.settingsPath}`, {
+    method: "PUT",
+    body: JSON.stringify({ message: "Ubah pengaturan kontak WA", content: toB64(JSON.stringify(data, null, 2) + "\n"), branch: s.branch, ...(sha && { sha }) })
+  });
+}

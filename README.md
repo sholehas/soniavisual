@@ -13,6 +13,11 @@ Tanpa server. Data di `data/products.json`, gambar di `uploads/`. Panel admin me
 2. Repository access: *Only select repositories* → repo ini. Permission: **Contents → Read and write**.
 3. Buka `https://situsmu/admin/` → isi repo, branch, token.
 
+## Fitur tambahan
+- **Chat WhatsApp:** isi nomor di panel admin (kartu *Pengaturan Kontak WhatsApp*). Disimpan di `data/settings.json`. Nomor kosong = tombol WA disembunyikan.
+- **Zoom gambar:** klik thumbnail untuk memperbesar; klik lagi, klik area kosong, atau tekan Esc untuk menutup.
+- **Pilihan tampilan:** Normal / Grid / List; pilihan tersimpan di browser pengunjung.
+
 ## Catatan
 - Perubahan tampil di situs publik setelah deploy selesai (~30-60 detik).
 - Token tersimpan di localStorage browser; klik **Keluar** untuk menghapusnya. Jangan login dari perangkat umum.
