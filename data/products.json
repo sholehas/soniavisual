@@ -43,31 +43,32 @@
   },
   {
     "id": "fleet-tracker-erp",
-    "title": "Logistik & Fleet Tracker ERP",
+    "title": "Database Lembaga & E-Rapor V1",
     "category": "dashboard",
     "categoryLabel": "Dashboard & ERP",
-    "oneLiner": "Panel kontrol monitoring armada kurir pengiriman barang secara real-time.",
-    "desc": "Dashboard analitik armada ekspedisi dengan visualisasi rute pengiriman, penghitungan konsumsi bahan bakar, dan status kurir aktif.",
+    "oneLiner": "Panel kontrol monitoring Penilaian dan Penempatan Ruang Kelas Murid Pintar",
+    "desc": "Dashboard analitik Penilaian dan Administrasi Siswa, Dengan Fitur Lengkpa",
     "features": [
       "Visualisasi peta rute GPS simulasi",
       "Statistik armada & laporan harian",
       "Role-based access (Manager & Admin)",
       "Filtering data tabel berkecepatan tinggi"
     ],
-    "demoUrl": "https://example.com/demo/fleet-erp",
-    "githubUrl": "https://github.com/example/fleet-erp",
-    "thumbnail": "https://placehold.co/600x340/0f172a/34d399?text=Fleet+Tracker+ERP",
+    "demoUrl": "https://script.google.com/macros/s/AKfycbz2dschJS59rBj3aoi743bU5VATltPTvYKZA5nDRdmlotKcHVfVD45GS8cKkFLDt94c/exec",
+    "githubUrl": "",
+    "thumbnail": "uploads/thumb-1794748972645-977699.png",
     "techStack": [
-      "React",
-      "Leaflet Maps",
-      "Chart.js",
-      "Tailwind CSS"
+      "HTML 5",
+      "Vue Js",
+      "Tailwind CSS",
+      "Spreadsheet"
     ],
     "credentials": {
-      "user": "admin_logistik",
-      "pass": "demo2026"
+      "user": "admin",
+      "pass": "123456"
     },
-    "status": "Demo Ready",
-    "createdAt": "2026-11-15T00:00:00.000Z"
+    "status": "Live Demo",
+    "createdAt": "2026-11-15T00:00:00.000Z",
+    "updatedAt": "2026-11-15T13:22:55.826Z"
   }
 ]
