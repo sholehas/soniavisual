@@ -16,7 +16,12 @@
       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center"><i data-lucide="layers" class="w-5 h-5 text-slate-950"></i></div>
       <div><span class="font-bold text-lg text-white block leading-none">SoniaVisual</span><span class="text-xs text-slate-400">Live Showcase Hub</span></div>
     </a>
+    <div class="flex items-center gap-2">
+      <button id="btn-status" title="Cek Pesanan" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 relative"><i data-lucide="receipt" class="w-3.5 h-3.5"></i><span class="hidden sm:inline">Pesanan</span></button>
+      <button id="btn-fav" title="Favorit" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 relative"><i data-lucide="heart" class="w-3.5 h-3.5"></i><span class="hidden sm:inline">Favorit</span><span id="fav-count" class="hidden absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-bold flex items-center justify-center">0</span></button>
+      <button id="btn-cart" title="Keranjang" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 relative"><i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i><span class="hidden sm:inline">Keranjang</span><span id="cart-count" class="hidden absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-bold flex items-center justify-center">0</span></button>
     <a href="admin/" class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>Portal Admin</a>
+    </div>
   </div>
 </header>
 <main class="flex-grow">
@@ -68,6 +73,10 @@
   </div>
 </dialog>
 <footer class="border-t border-slate-900 py-6 text-center text-xs text-slate-500 mt-auto"><p>© 2026 SoniaVisual Platform.</p></footer>
+<div id="product-page" class="hidden fixed inset-0 z-[45] bg-slate-950 overflow-y-auto"></div>
+<dialog id="cart-modal" class="bg-transparent backdrop:bg-slate-950/80 p-4 max-w-lg w-full rounded-2xl m-auto focus:outline-none"></dialog>
+<dialog id="checkout-modal" class="bg-transparent backdrop:bg-slate-950/80 p-4 max-w-lg w-full rounded-2xl m-auto focus:outline-none"></dialog>
+<dialog id="status-modal" class="bg-transparent backdrop:bg-slate-950/80 p-4 max-w-lg w-full rounded-2xl m-auto focus:outline-none"></dialog>
 <a id="wa-float" href="#" target="_blank" rel="noopener noreferrer" aria-label="Chat admin via WhatsApp" class="hidden fixed bottom-6 right-6 z-40 items-center gap-2 pl-4 pr-4 sm:pr-5 py-3 rounded-full bg-green-600 hover:bg-green-500 text-white text-sm font-semibold shadow-2xl shadow-green-900/40 transition-colors"><i data-lucide="message-circle" class="w-5 h-5"></i><span class="hidden sm:inline">Chat Admin</span></a>
 <div id="lightbox" class="hidden fixed inset-0 z-[60] items-center justify-center p-4 bg-slate-950/90 backdrop-blur-sm cursor-zoom-out" role="dialog" aria-label="Pratinjau gambar"><img id="lightbox-img" alt="" class="max-w-full max-h-full rounded-xl object-contain shadow-2xl cursor-zoom-out"></div>
 <script type="module" src="js/public.js"></script>

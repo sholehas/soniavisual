@@ -42,7 +42,7 @@ function openForm(a) {
     const preset = PRESET.includes(a.category);
     $("form-title").value = a.title; $("form-category").value = preset ? a.category : "custom";
     $("form-customCategory").value = preset ? "" : a.categoryLabel || a.category;
-    $("form-oneliner").value = a.oneLiner; $("form-desc").value = a.desc;
+    $("form-price").value = a.price || ""; $("form-oneliner").value = a.oneLiner; $("form-desc").value = a.desc;
     $("form-demoUrl").value = a.demoUrl; $("form-githubUrl").value = a.githubUrl || "";
     $("form-thumbnailUrl").value = /^https?:/.test(a.thumbnail) ? a.thumbnail : "";
     $("form-features").value = (a.features || []).join("\n"); $("form-techStack").value = (a.techStack || []).join(", ");
@@ -59,9 +59,10 @@ async function save() {
   if (category === "custom") { label = d.get("customCategory").trim(); category = label.toLowerCase().replace(/[^a-z0-9_-]/g, "-"); }
   const lines = (s, sep) => String(s || "").split(sep).map((x) => x.trim()).filter(Boolean);
   busy(true);
-  let newThumb = null, oldThumb = null;
+  let newThumb = null, oldThumb = null; const gal = [];
   try {
     if (file) newThumb = await uploadImage(file);
+    for (const gf of $("form-galleryFiles").files) gal.push(await uploadImage(gf));
     await mutate((arr) => {
       const old = arr.find((p) => p.id === id);
       const thumbnail = newThumb || d.get("thumbnailUrl").trim() || old?.thumbnail || CONFIG.placeholder;
@@ -69,7 +70,7 @@ async function save() {
       const item = {
         ...old, id: old?.id || "demo-" + Date.now(), title: d.get("title").trim(), category, categoryLabel: label,
         oneLiner: d.get("oneLiner").trim(), desc: d.get("desc").trim(), features: lines(d.get("features"), "\n"),
-        demoUrl: d.get("demoUrl").trim(), githubUrl: d.get("githubUrl").trim(), thumbnail, techStack: lines(d.get("techStack"), ","),
+        demoUrl: d.get("demoUrl").trim(), githubUrl: d.get("githubUrl").trim(), thumbnail, price: Number(d.get("price")) || 0, images: [...($("form-clearGallery").checked ? [] : old?.images || []), ...gal], techStack: lines(d.get("techStack"), ","),
         credentials: { user: d.get("demoUser").trim() || "-", pass: d.get("demoPass").trim() || "-" },
         status: d.get("status").trim() || "Live Demo", ...(old ? { updatedAt: new Date().toISOString() } : { createdAt: new Date().toISOString() })
       };
@@ -77,7 +78,7 @@ async function save() {
     }, `${id ? "Ubah" : "Tambah"} demo: ${d.get("title").trim()}`);
     if (oldThumb) deleteImage(oldThumb);
     $("form-modal").close(); toast("Tersimpan! Situs terbarui setelah deploy selesai."); await refresh();
-  } catch (e) { if (newThumb) deleteImage(newThumb); fail(e); } finally { busy(false); }
+  } catch (e) { if (newThumb) deleteImage(newThumb); gal.forEach(deleteImage); fail(e); } finally { busy(false); }
 }
 
 async function remove(id) {
@@ -90,6 +91,7 @@ async function remove(id) {
 }
 
 // ---------- Pengaturan WA ----------
+let curSettings = {};
 function updateWaTest() {
   const l = waLink($("wa-number").value, $("wa-message").value || CONFIG.waDefaultMessage), a = $("wa-test");
   a.href = l || "#"; a.classList.toggle("hidden", !l);
@@ -97,6 +99,8 @@ function updateWaTest() {
 async function loadWaForm() {
   try {
     const { data } = await getSettings();
+    curSettings = data; $("bank-name").value = data.bankName || ""; $("bank-account").value = data.bankAccount || ""; $("bank-holder").value = data.bankHolder || "";
+    $("qris-current").textContent = data.qrisImage ? "QRIS terpasang: " + data.qrisImage : "Belum ada QRIS.";
     $("wa-number").value = data.waNumber || ""; $("wa-message").value = data.waMessage || CONFIG.waDefaultMessage; updateWaTest();
   } catch (e) { fail(e); }
 }
@@ -105,7 +109,10 @@ async function saveWa() {
   if (num && num.replace(/\D/g, "").length < 9) return toast("Nomor WhatsApp tidak valid");
   const b = $("btn-save-settings"); b.disabled = true; b.textContent = "Menyimpan...";
   try {
-    await saveSettings({ waNumber: num, waMessage: $("wa-message").value.trim() || CONFIG.waDefaultMessage });
+    let qris = curSettings.qrisImage || "", qf = $("qris-file").files[0];
+    if (qf) { const n = await uploadImage(qf); if (qris.startsWith(CONFIG.uploadsDir + "/")) deleteImage(qris); qris = n; }
+    curSettings = { ...curSettings, waNumber: num, waMessage: $("wa-message").value.trim() || CONFIG.waDefaultMessage, bankName: $("bank-name").value.trim(), bankAccount: $("bank-account").value.trim(), bankHolder: $("bank-holder").value.trim(), qrisImage: qris };
+    await saveSettings(curSettings); $("qris-current").textContent = qris ? "QRIS terpasang: " + qris : "Belum ada QRIS.";
     toast("Pengaturan WA tersimpan! Tampil setelah deploy selesai.");
   } catch (e) { fail(e); } finally { b.disabled = false; b.textContent = "Simpan Pengaturan"; }
 }

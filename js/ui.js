@@ -35,3 +35,5 @@ export function waLink(number, msg = "") {
   else if (n.startsWith("8")) n = "62" + n;
   return n ? `https://wa.me/${n}${msg ? "?text=" + encodeURIComponent(msg) : ""}` : "";
 }
+
+export const rupiah = (n) => "Rp " + Number(n || 0).toLocaleString("id-ID");

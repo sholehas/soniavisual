@@ -18,6 +18,12 @@ Tanpa server. Data di `data/products.json`, gambar di `uploads/`. Panel admin me
 - **Zoom gambar:** klik thumbnail untuk memperbesar; klik lagi, klik area kosong, atau tekan Esc untuk menutup.
 - **Pilihan tampilan:** Normal / Grid / List; pilihan tersimpan di browser pengunjung.
 
+## Toko (tahap 1, frontend)
+- Klik kartu membuka halaman detail dengan galeri; link langsung per produk: `?p=<id>` (tombol **Bagikan**).
+- **Keranjang** dan **Favorit** tersimpan di browser pengunjung. **Beli Sekarang** membuka form data pembeli + bukti bayar (kamera/galeri) + info rekening/QRIS dari panel admin.
+- Admin: isi harga dan galeri per produk, serta rekening dan gambar QRIS di *Pengaturan*.
+- `apiUrl` di `js/config.js` masih kosong = **mode demo** (pesanan belum terkirim ke admin). Pasang backend dengan mengikuti `gas/PANDUAN.md`, lalu isi `apiUrl`. Dasbor dan pesanan ada di `/admin/` (kartu *Dasbor & Pesanan*).
+
 ## Catatan
 - Perubahan tampil di situs publik setelah deploy selesai (~30-60 detik).
 - Token tersimpan di localStorage browser; klik **Keluar** untuk menghapusnya. Jangan login dari perangkat umum.
