@@ -4,8 +4,8 @@
     "title": "Database Lembaga Lengkap",
     "category": "dashboard",
     "categoryLabel": "Dashboard & ERP",
-    "oneLiner": "Otomatisasi semua keperluan madrasah dalam 1 Aplikasi",
-    "desc": "Manajemen Data Santri, Data Guru, Data Keuangan, Data Absensi Guru dan Murid, dan Data Gaji Guru Otomatis Dalam satu aplikasi",
+    "oneLiner": "Otomatisasi semua keperluan madrasah dalam 1 Aplikasi, serta monitoring wali murid yang instan dalam genggaman",
+    "desc": "Manajemen Data Santri, Data Guru, Data Keuangan, Data Absensi Guru dan Murid, dan Data Gaji Guru Otomatis Dalam satu aplikasi\n\nInclud Absensi Guru + Murid, Aplikasi Monitoring Untuk Wali Santri/Murid\n\nUntuk Akses Guru Pakai Akun Guru, Untuk Akses Wali Murid Gunakan ID Murid dan Tgl Lahir Murid",
     "features": [
       "Login Multi User Sesuai Jabatan",
       "Data Terkoneksi Dengan Rapi",
@@ -28,8 +28,21 @@
     "status": "Live & Stabil",
     "createdAt": "2026-11-15T22:25:40.558Z",
     "price": 425000,
-    "images": [],
-    "updatedAt": "2026-11-16T12:36:18.650Z"
+    "images": [
+      "uploads/thumb-1794833015105-421585.png",
+      "uploads/thumb-1794833017085-776197.png",
+      "uploads/thumb-1794833018882-987057.png",
+      "uploads/thumb-1794833020894-463469.png",
+      "uploads/thumb-1794833022865-881788.png",
+      "uploads/thumb-1794833024810-584666.png",
+      "uploads/thumb-1794833026369-449342.png",
+      "uploads/thumb-1794833027933-491373.png",
+      "uploads/thumb-1794833029483-784573.png",
+      "uploads/thumb-1794833031023-4033.png",
+      "uploads/thumb-1794833032318-325958.png",
+      "uploads/thumb-1794833034120-252093.png"
+    ],
+    "updatedAt": "2026-11-16T12:43:56.839Z"
   },
   {
     "id": "pos-scanner-demo",
