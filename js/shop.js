@@ -55,7 +55,9 @@ function renderProduct() {
           <button data-act="cart" class="${BTN} ${inCart ? "bg-slate-700 text-white" : "bg-slate-800 hover:bg-slate-700 text-slate-200"}"><i data-lucide="shopping-cart" class="w-4 h-4"></i>${inCart ? "Lihat Keranjang" : "Keranjang"}</button>` : ""}
           <button data-act="fav" class="${BTN} ${f ? "bg-rose-500/20 text-rose-300 border border-rose-500/30" : "bg-slate-800 hover:bg-slate-700 text-slate-200"}"><i data-lucide="heart" class="w-4 h-4 ${f ? "fill-current" : ""}"></i>${f ? "Favorit" : "Simpan Favorit"}</button>
           <a href="${esc(a.demoUrl)}" target="_blank" rel="noopener noreferrer" class="${BTN} bg-slate-800 hover:bg-slate-700 text-slate-200">Buka Demo ↗</a>
-          ${wl ? `<a href="${esc(wl)}" target="_blank" rel="noopener noreferrer" class="${BTN} bg-green-600 hover:bg-green-500 text-white"><i data-lucide="message-circle" class="w-4 h-4"></i>Tanya WA</a>` : ""}
+          ${priced(a) ? (wl ? `<a href="${esc(wl)}" target="_blank" rel="noopener noreferrer" class="${BTN} bg-green-600 hover:bg-green-500 text-white"><i data-lucide="message-circle" class="w-4 h-4"></i>Tanya WA</a>` : "")
+            : (wl ? `<a href="${esc(wl)}" target="_blank" rel="noopener noreferrer" class="${BTN} bg-green-600 hover:bg-green-500 text-white col-span-2"><i data-lucide="message-circle" class="w-4 h-4"></i>Hubungi Admin untuk Memesan</a>`
+              : `<button data-act="nowa" class="${BTN} bg-green-600/40 text-white/80 col-span-2"><i data-lucide="message-circle" class="w-4 h-4"></i>Hubungi Admin</button>`)}
         </div>
         ${priced(a) ? `<p class="text-[11px] text-slate-500 mt-3">${NOTE}</p>` : ""}
       </div>
@@ -198,6 +200,7 @@ export function initShop(c) {
     else if (act === "buy") openCheckout([cur.id]);
     else if (act === "thumb") { cur.img = Number(t.dataset.i); renderProduct(); }
     else if (act === "zoom") ctx.zoom(t);
+    else if (act === "nowa") toast("Nomor WhatsApp admin belum diatur di panel admin");
     else if (act === "copy") copyText(`User: ${a.credentials?.user}\nPassword: ${a.credentials?.pass}`, "Akun demo berhasil disalin!");
   });
 }
